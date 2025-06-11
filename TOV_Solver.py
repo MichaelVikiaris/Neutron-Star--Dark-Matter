@@ -104,3 +104,42 @@ class TOV_Solver():
         self.lamda = lamda
         self.beta = beta
         self.radius = rad
+
+    def M_R_solve(self,start,stop,points):
+        pmat = np.geomspace(start,stop,num = points)
+        self.Rmatomns = np.array([])
+        self.Mmatomns = np.array([])
+        self.Lmatns = np.array([])
+        for i in range (0,points,1):
+            h = 0.0001
+            y10=2
+            p0 = pmat[i]
+            E0 = self.EP1(p0)
+            r0 = 0.0001
+            m1= (11.2*(10**(-6))/3)*(h**3)*E0
+            y0 = [p0,m1,y10]
+            sol = solve_ivp(self.TOV1,[0.1,10000],y0,events = self.surf_star)
+
+            mass2 = sol.y[1,len(sol.y[1])-1]
+            rad = sol.t[len(sol.t)-1]
+
+            yR = sol.y[2,len(sol.y[2])-1]
+            Rs=2.948*mass2
+            beta=1.474*(mass2/rad)
+            kappa2=(8*beta**5/5)*(1-2*beta)**2*(2-yR+2*beta*(yR-1))*(2*beta*(6-3*yR+3*beta*(5*yR-8))+4*beta**3*(13-11*yR+beta*(3*yR-2)+2*beta**2*(1+yR))+3*(1-2*beta)**2*(2-yR+2*beta*(yR-1))*np.log(1-2*beta))**(-1)
+            lamda=64/3*kappa2*(rad/Rs)**5#(2/3)*kappa2*(rad/(1.474*mass))
+            self.Rmatomns = np.append(self.Rmatomns,rad)
+            self.Mmatomns = np.append(self.Mmatomns,mass2)
+            self.Lmatns = np.append(self.Lmatns,lamda)
+
+'''--------------------------------- Sample solution with the TOV_Solver -------------------------------------------'''
+NS1 = TOV_Solver('EOS.dat')
+NS1.solve_tov(150) #Single configuration solution for central pressure 150
+print("Radius:", NS1.radius,"Mass:", NS1.mass)
+
+NS1.M_R_solve(0.001,1500,100) #Derive the M-R diagram for this EoS
+#plot the M-R diagram
+plt.plot(NS1.Rmatomns,NS1.Mmatomns, label = "M-R")
+plt.legend()
+plt.grid()
+plt.show()
