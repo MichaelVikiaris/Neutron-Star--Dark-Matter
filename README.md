@@ -1,4 +1,9 @@
-# Sample-Codes
+# Sample Codes
+## A note towards readers
+
+You will find here the codes I have used throughout the years as a bachelors, masters and now a PhD student. You will find many similarities and argue that this is the same code again and again and you will not be wrong. The code is pretty much the same, but the parameters change and physics is derived through the parameters. We need to find the physical meaning behind the parameters and the results they give us and use it to explain our observational data not only from a mathematical, but also from a physics point of view. This is why the codes I use are only half of the actual research I am doing with the team in my PhD. For example, a simple minus sign instead of plus in the Energy Density of DM in front of the interaction term, drastically changes both the results and the physical meaning of the EoS and nature of DM one uses.
+
+## Code files.py explanation
 
 Two_Fluid_relativistic.py is a code wirtten in Python that solves the TOV equations for a Two-Fluid model with a relativistic EoS for the DM. The way that works is by inserting a specific dm particle mass (m_x) and a specific interaction of DM particles (z) and two specific central pressures for DM and OM (Ordinary Matter). Also, specifying a fraction (f) for the DM pressure in terms of total pressure (when you want to derive the M-R diagram) helps you to have a relation between p_b and p_x (baryonic and dm pressure) in order to derive the M-R diagram because you need the two central pressures for each fluid.
 
