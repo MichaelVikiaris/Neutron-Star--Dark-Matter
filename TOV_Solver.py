@@ -41,8 +41,8 @@ class TOV_Solver():
         self.E_n_b = PchipInterpolator((rho_b),(erho_b))
         #f4 = PchipInterpolator(nx1,y1)#,kind = 'cubic',bounds_error=False)#,fill_value="extrapolate")
 
-        self.der_EoS_b = EoS_b.derivative(nu=1)
-        self.der_E_n_b = E_n_b.derivative(nu=1)
+        self.der_EoS_b = self.EoS_b.derivative(nu=1)
+        self.der_E_n_b = self.E_n_b.derivative(nu=1)
         
     def dP(self,r,P,M,E):
         DP = -1.474*((E*M)/(r**2))*(1+(P/E))*(1+11.2*(10**(-6))*(r**3)*(P/M))*((1-2.948*(M/r))**(-1))
