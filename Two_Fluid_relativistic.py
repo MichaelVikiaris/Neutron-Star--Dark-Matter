@@ -1,16 +1,11 @@
 ''' THE IMPORTS AND THE IMPORTANT VARIABLES FOR THE CODE'''
 import numpy as np
-
-import math
-
 from scipy.optimize import fsolve
 from scipy.integrate import fixed_quad
 from scipy.integrate import solve_ivp
 from scipy.differentiate import derivative
-
 from scipy.interpolate import PchipInterpolator
-
-#matplotlib.use('nbagg')
+import matplotlib
 matplotlib.use('TkAgg')  # Use the TkAgg backend for GUI rendering
 import matplotlib.pyplot as plt
 
@@ -410,13 +405,6 @@ plt.show()
 
 # Now we can use everything we got from above in a for loop to scan a grid of values of central pressure given a fraction of P_dm in terms of total P
 fr1 = 10**(-2)#5*10**(-3)#5.49*10**(-1)#0.0889305#0.0011442#0.0303335#0.0222525#0.000995724#0.568842#0.0905297#0.00863409#0.0889305#0.0310265#0.0761623#0.00161952#0.00712679#0.46236559##0.173838#0.00259141#0.54959#0.00402442 #'''for mx100 z10'''0.1225318372696248#0.13089
-#pmat1 = np.geomspace(0.001,40,num = 30,endpoint = False)
-#pmat2 = np.geomspace(40,70,num = 30,endpoint = False)
-#pmat3 = np.geomspace(70,1500,num = 30,endpoint = True)
-#pmat = np.append(pmat1,pmat2)
-#pmat = np.append(pmat,pmat3)
-#pmat = append(pmat,70)
-#pmat = np.sort(pmat)
 pmat = np.geomspace(0.01,1500,num=150)
 Rmatom1 = np.array([])
 Mmatom1 = np.array([])
@@ -557,9 +545,7 @@ for l in range (0,150,1):
     e_x2 = ex(p_2_mat)
 
     # Now we find n_x and store r and M data to arrays
-    print("FIND THE NX F4")
     #n_x1 = f4(e_x1)
-    print("FIND THE NX NXFINDER")
     #n_x2 = n_x_finder(e_x2)
     print("DONE")
     r_tot_data = np.append(sol.t,soln.t)
@@ -575,13 +561,9 @@ for l in range (0,150,1):
         r_tot_data1 = r_1_data
         M_data1 = sol.y[1]
     # Now that we have the continuous n_x we proceed in finding N_x
-    #print("FIND NX1FINDER")
     #N_x1 = N_x_Finder(R_1,r_1_data,n_x1,r_tot_data1,M_data1)
-    #print("FIND NX1FINDER")
     #N_x2 = N_x_Finder(R_2,r_2_data,n_x2,r_tot_data2,M_data2)
-
     # Now we are going to print the results.
-
     #print("The total number of fermionic1 matter particles is N$_{x1}$ = ",N_x1)
     #print("The total number of fermionic2 matter particles is N$_{x2}$ = ",N_x2)
     print("M_tot , M_ns, M_x in the following by order:")
@@ -629,8 +611,6 @@ for i in range (0,200,1):
 print("End of loop 1")
 
 # Derive a Dark Star for the given mx and z
-
-# DARK STAR
 pmat = np.geomspace(0.0000001,1500,num = 50)
 Rmatomds = np.array([])
 Mmatomds = np.array([])
