@@ -20,3 +20,7 @@ For those who don't know what EoS is, it is simply a relation between the Energy
 
 #### Note
 Now of course you can use the EoS_maker.py classes in the TOV_Solver.py, the baryonic EoS in particular, use the NS_EoS as primary class and create other child classes that simply use the constructor of NS_EoS and have methods of data manipulation and TOV solutions. But I prefered to have the whole code there, in case someone misses the other files and just checks the TOV_Solver.py one. 
+
+## Future edit and additions
+
+Right now I am working on a new project, in my effort to try and explain the newest observation of exotic compact objects as the XTE. I am tryin to connect new M-R branches with the already known M-R branch of a Neutron Star, although I am in favor of the existence of multiple M-R branches. I have encountered some problems though in the EoS of this one fluid type of admixted matter in the cases where I use attractive interactions, something that is not so well established. So now I am working on a One-Fluid model for baryonic and dark matter and I am testing the interaction types for this model (interaction between dm particles and interaction between baryonic and dark matter)
